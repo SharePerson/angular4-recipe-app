@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  activeLink: string;
+
+  onNavChange(linkData: {link: string}){
+    this.activeLink = linkData.link;
+  }
+
 }
