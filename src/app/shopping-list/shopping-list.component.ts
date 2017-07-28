@@ -12,9 +12,6 @@ export class ShoppingListComponent implements OnInit {
 
 	ingredients : Ingredient[];
 
-  selectedIndex: number;
-  selectedIngredient: Ingredient;
-
   constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
@@ -25,16 +22,6 @@ export class ShoppingListComponent implements OnInit {
         this.ingredients = ingredients;
       }
     );
-  }
-
-  onIngredientClick(ingredient)
-  {
-    this.selectedIndex = ingredient.index;
-    this.selectedIngredient = ingredient.ingredient;
-  }
-
-  onIngredientDeleted(index: number){
-    this.ingredients.splice(index, 1);
   }
 
 }

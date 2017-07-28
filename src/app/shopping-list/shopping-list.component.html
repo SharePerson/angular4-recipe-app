@@ -1,13 +1,9 @@
 <div class="row">
 	<div class="col-xs-10">
-		<app-shopping-list-editor
-      (ingredientDeleted)="onIngredientDeleted($event)"
-      [selectedIndex]="selectedIndex"
-      [selectedIngredient]="selectedIngredient">
-    </app-shopping-list-editor>
+		<app-shopping-list-editor></app-shopping-list-editor>
 		<hr/>
 		<ul class="list-group">
-			<a *ngFor="let ingredient of ingredients; let i = index;" class="list-group-item" (click)="onIngredientClick({index: i, ingredient: ingredient})" style="cursor: pointer">{{i+1}}. {{ingredient.name}} ({{ingredient.amount}})</a>
+			<a *ngFor="let ingredient of ingredients; let i = index;" class="list-group-item" style="cursor: pointer">{{i+1}}. {{ingredient.name}} ({{ingredient.amount}})</a>
 		</ul>
 	</div>
 </div>
