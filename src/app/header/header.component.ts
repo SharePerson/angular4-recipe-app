@@ -5,27 +5,9 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-
-  linkName: string;
-  @Output() onNavigationChange = new EventEmitter<{link: string}>();
+export class HeaderComponent  {
 
   constructor() {
 
-  }
-
-  ngOnInit() {
-    this.linkName = 'recipe-book';
-    this.onNavigationChange.emit({link: this.linkName});
-  }
-
-  onNavRecipeBookClick(){
-    this.linkName = 'recipe-book';
-    this.onNavigationChange.emit({link: this.linkName});
-  }
-
-  onNavShoppingListClick(){
-    this.linkName = 'shopping-list';
-    this.onNavigationChange.emit({link: this.linkName});
   }
 }

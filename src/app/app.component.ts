@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  activeLink: string;
-
-  onNavChange(linkData: {link: string}){
-    this.activeLink = linkData.link;
-  }
-
 }
