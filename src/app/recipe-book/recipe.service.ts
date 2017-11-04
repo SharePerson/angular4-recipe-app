@@ -33,4 +33,8 @@ export class RecipeService {
     let recipesFound = _.where(this.recipes, {id: id});
     return recipesFound.length > 0? recipesFound[0]: null;
   }
+
+  addRecipe(recipe: Recipe){
+    this.recipes.push(recipe);
+  }
 }
