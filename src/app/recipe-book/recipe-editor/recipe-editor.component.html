@@ -1,0 +1,25 @@
+<p>
+  <b>Recipe Id:</b>
+</p>
+<p>
+  <input type="number" [(ngModel)]="recipe.id" class="form-control" />
+</p>
+<p>
+  <b>Recipe Name:</b>
+</p>
+<p>
+  <input type="text" [(ngModel)]="recipe.name" class="form-control" />
+</p>
+<p>
+  <b>Description</b>
+</p>
+<p>
+  <textarea class="form-control">{{recipe.description}}</textarea>
+</p>
+<p>
+  <b>Recipe Image</b>
+</p>
+<p>
+  <input type="url" [(ngModel)]="recipe.imagePath" class="form-control" />
+</p>
+<button class="btn btn-md btn-primary" (click)="onRecipeAdded"><i class="glyphicon glyphicon-save"></i>&nbsp;Save Changes</button>
