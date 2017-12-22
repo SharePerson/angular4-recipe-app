@@ -8,15 +8,28 @@ export class ShoppingListService {
   ];
 
   ingredientAdded = new Subject<Ingredient[]>();
+  ingredientSelected = new Subject<{index: number, ingredient: Ingredient}>();
 
   addIngredient(ingredient: Ingredient){
+    console.log("ingredient to add: "+ingredient);
     this.ingredients.push(ingredient);
     this.ingredientAdded.next(this.ingredients.slice());
   }
 
-  getIngredients()
-  {
-    return this.ingredients.slice();
+  selectIngredient(index: number, ingredient: Ingredient){
+    this.ingredientSelected.next({index: index, ingredient: ingredient});
+  }
+
+  updateIngredient(index: number, ingredient: Ingredient){
+    this.ingredients[index] = ingredient;
+  }
+
+  deleteIngredient(index: number) {
+    this.ingredients.splice(index, 1);
+  }
+
+  getIngredients() {
+    return this.ingredients;
   }
 
 }
