@@ -31,15 +31,30 @@ export class RecipeService {
     return recipesFound.length > 0? recipesFound[0]: null;
   }
 
+  private getNewItemId(): number {
+    return this.recipes.length > 0? this.recipes[this.recipes.length-1].id + 1: 1;
+  }
+
+  private getIndex(id: number): number{
+    let recipesFound = _.where(this.recipes, {id: id});
+    return recipesFound.length> 0? this.recipes.indexOf(recipesFound[0]) : -1;
+  }
+
   addRecipe(recipe: Recipe){
-    recipe.id = this.recipes.length + 1;
+    recipe.id = this.getNewItemId();
     this.recipes.push(recipe);
   }
 
   updateRecipe(id: number, recipe: Recipe){
-    let recipesFound = _.where(this.recipes, {id: id});
-    let index = recipesFound.length> 0? this.recipes.indexOf(recipesFound[0]) : -1;
+    let index = this.getIndex(id);
+    recipe.id = id;
     if(index >= 0)
       this.recipes[index] = recipe;
+  }
+
+  deleteRecipe(id: number){
+    let index = this.getIndex(id);
+    if(index >= 0)
+      this.recipes.splice(index, 1);
   }
 }
