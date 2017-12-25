@@ -8,6 +8,34 @@
   <textarea id="description" name="description" formControlName="description" class="form-control margin-1" placeholder="Description"></textarea>
   <span class="text-danger margin-1" *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched && recipeForm.get('description').errors['required']">Recipe description is required!</span>
   <button class="btn btn-danger pull-right margin-1" type="button" (click)="onClear()">Clear</button>
-  <button class="btn btn-success pull-right margin-1 margin-2" type="submit" [disabled]="!recipeForm.valid">{{editMode? "Update": "Add"}}</button>
+  <button
+    class="btn btn-success pull-right margin-1 margin-2"
+    type="submit"
+    [disabled]="!recipeForm.valid">{{editMode? "Update": "Add"}}
+  </button>
   <div class="clearfix"></div>
+  <div formArrayName="ingredients">
+    <div *ngFor="let ingredientControl of recipeForm.get('ingredients').controls; let i = index">
+      <div class="form-group" [formGroupName]="i">
+        <div class="pull-left margin-1 margin-2">
+          <input type="text" formControlName="name" class="form-control" placeholder="Name" />
+        </div>
+        <div class="pull-left margin-1 margin-2">
+          <input type="number" formControlName="amount" class="form-control" placeholder="Amount"/>
+        </div>
+        <div class="pull-left margin-1 margin-2">
+          <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <hr/>
+    <button
+      class="btn btn-primary btn-sm pull-left margin-1"
+      type="button"
+      *ngIf="recipeForm.valid"
+      (click)="onAddIngredientControls()">
+      Add Ingredients
+    </button>
+  </div>
 </form>

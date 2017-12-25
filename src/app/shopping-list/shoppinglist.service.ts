@@ -11,7 +11,6 @@ export class ShoppingListService {
   ingredientSelected = new Subject<{index: number, ingredient: Ingredient}>();
 
   addIngredient(ingredient: Ingredient){
-    console.log("ingredient to add: "+ingredient);
     this.ingredients.push(ingredient);
     this.ingredientAdded.next(this.ingredients.slice());
   }
