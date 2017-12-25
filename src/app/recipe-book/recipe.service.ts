@@ -23,7 +23,7 @@ export class RecipeService {
   ];
 
   getRecipes(){
-    return this.recipes.slice(); //to get a clone of the current array instead of a reference
+    return this.recipes; //to get a clone of the current array instead of a reference
   }
 
   getRecipe(id: number){
@@ -32,6 +32,14 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe){
+    recipe.id = this.recipes.length + 1;
     this.recipes.push(recipe);
+  }
+
+  updateRecipe(id: number, recipe: Recipe){
+    let recipesFound = _.where(this.recipes, {id: id});
+    let index = recipesFound.length> 0? this.recipes.indexOf(recipesFound[0]) : -1;
+    if(index >= 0)
+      this.recipes[index] = recipe;
   }
 }

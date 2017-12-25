@@ -1,25 +1,13 @@
-<p>
-  <b>Recipe Id:</b>
-</p>
-<p>
-  <input type="number" [(ngModel)]="recipe.id" class="form-control" />
-</p>
-<p>
-  <b>Recipe Name:</b>
-</p>
-<p>
-  <input type="text" [(ngModel)]="recipe.name" class="form-control" />
-</p>
-<p>
-  <b>Description</b>
-</p>
-<p>
-  <textarea class="form-control">{{recipe.description}}</textarea>
-</p>
-<p>
-  <b>Recipe Image</b>
-</p>
-<p>
-  <input type="url" [(ngModel)]="recipe.imagePath" class="form-control" />
-</p>
-<button class="btn btn-md btn-primary" (click)="onRecipeAdded"><i class="glyphicon glyphicon-save"></i>&nbsp;Save Changes</button>
+<h2>{{editMode? "Edit": "Add a new recipe"}} {{ editMode? recipe.name: ""}}</h2>
+
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <input id="name" name="name" type="text" formControlName="name" class="form-control margin-1" placeholder="Name" />
+  <span class="text-danger margin-1" *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched && recipeForm.get('name').errors['required']">Recipe name is required!</span>
+  <input id="imagePath" name="imagePath" type="text" formControlName="imagePath" class="form-control margin-1" placeholder="Image Path"/>
+  <span class="text-danger margin-1" *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched && recipeForm.get('imagePath').errors['required']">Recipe image is required!</span>
+  <textarea id="description" name="description" formControlName="description" class="form-control margin-1" placeholder="Description"></textarea>
+  <span class="text-danger margin-1" *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched && recipeForm.get('description').errors['required']">Recipe description is required!</span>
+  <button class="btn btn-danger pull-right margin-1" type="button" (click)="onClear()">Clear</button>
+  <button class="btn btn-success pull-right margin-1 margin-2" type="submit" [disabled]="!recipeForm.valid">{{editMode? "Update": "Add"}}</button>
+  <div class="clearfix"></div>
+</form>
