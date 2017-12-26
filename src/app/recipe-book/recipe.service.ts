@@ -23,7 +23,7 @@ export class RecipeService {
   ];
 
   getRecipes(){
-    return this.recipes; //to get a clone of the current array instead of a reference
+    return this.recipes;
   }
 
   getRecipe(id: number){

@@ -75,7 +75,7 @@ export class RecipeEditorComponent implements OnInit {
     this.recipeForm.reset();
     this.editMode = false;
     this.addingIngredient = false;
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   onAddIngredientControls(){
@@ -85,5 +85,9 @@ export class RecipeEditorComponent implements OnInit {
     });
 
     (<FormArray>this.recipeForm.get('ingredients')).push(formGroup);
+  }
+
+  onDeleteIngredientControl(index: number){
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 }

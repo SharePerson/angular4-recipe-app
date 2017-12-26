@@ -4,6 +4,7 @@
   <input id="name" name="name" type="text" formControlName="name" class="form-control margin-1" placeholder="Name" />
   <span class="text-danger margin-1" *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched && recipeForm.get('name').errors['required']">Recipe name is required!</span>
   <input id="imagePath" name="imagePath" type="text" formControlName="imagePath" class="form-control margin-1" placeholder="Image Path"/>
+  <img [src]="recipeForm.value.imagePath" *ngIf="recipeForm.value.imagePath.length > 0" class="img-responsive thumb margin-1" />
   <span class="text-danger margin-1" *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched && recipeForm.get('imagePath').errors['required']">Recipe image is required!</span>
   <textarea id="description" name="description" formControlName="description" class="form-control margin-1" placeholder="Description"></textarea>
   <span class="text-danger margin-1" *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched && recipeForm.get('description').errors['required']">Recipe description is required!</span>
@@ -24,7 +25,7 @@
           <input type="number" formControlName="amount" class="form-control" placeholder="Amount"/>
         </div>
         <div class="pull-left margin-1 margin-2">
-          <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+          <button class="btn btn-danger" (click)="onDeleteIngredientControl(i)"><i class="glyphicon glyphicon-remove"></i></button>
         </div>
         <div class="clearfix"></div>
       </div>
