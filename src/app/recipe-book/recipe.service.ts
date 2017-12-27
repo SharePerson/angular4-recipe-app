@@ -1,7 +1,7 @@
 import {Recipe} from "./recipe.model";
 import * as _ from 'underscore';
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import 'rxjs/Rx';
 import {Subject} from "rxjs/Subject";
 
@@ -37,7 +37,7 @@ export class RecipeService {
 
   saveRecipes(){
     this.http.put(this.recipeBackendUrl, this.recipes).subscribe(
-      (response: any)=> {
+      (response: Response)=> {
         console.log('Recipes are saved successfully with response: ' + JSON.stringify(response));
         this.recipesSaved.next();
       },
@@ -47,15 +47,21 @@ export class RecipeService {
 
   fetchRecipes(){
     this.http.get(this.recipeBackendUrl).map(
-      (response: any) =>{
-        return response.json();
+      (response: Response) =>{
+        let recipes: Recipe[] = response.json();
+        for(let recipe of recipes){
+          if(!recipe.ingredients)
+            recipe.ingredients = [];
+        }
+
+        return recipes;
       }
     ).subscribe(
-      (response: any) =>{
+      (response: Recipe[]) =>{
         this.recipes = response;
         this.recipesFetched.next(this.recipes);
       },
-      (error: any) =>{
+      (error: Response) =>{
         console.log('Error occurred retrieving recipes: '+ error);
       }
     );
