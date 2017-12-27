@@ -1,30 +1,20 @@
 import {Recipe} from "./recipe.model";
 import * as _ from 'underscore';
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import 'rxjs/Rx';
+import {Subject} from "rxjs/Subject";
 
+@Injectable()
 export class RecipeService {
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      1,
-      'A test recipe',
-      'This is a description test',
-      'https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg',
-      [
-        {name: "Meat", amount: 1}, {name: "Bread", amount: 2}
-      ]),
-    new Recipe(
-      2,
-      'A test recipe 2',
-      'This is a description test 2',
-      'http://images.media-allrecipes.com/userphotos/250x250/02/57/31/2573174.jpg',
-      [
-        {name: "Fries", amount: 20}, {name: "Soup", amount: 3}
-      ])
-  ];
+  constructor(private http: Http){}
 
-  getRecipes(){
-    return this.recipes;
-  }
+  private recipes: Recipe[] = [];
+  private recipeBackendUrl: string = 'https://ng-recipe-backend-f99d0.firebaseio.com/recipes.json';
+  recipesFetched: Subject<Recipe[]> = new Subject();
+  recipesSaved = new Subject();
+
 
   getRecipe(id: number){
     let recipesFound = _.where(this.recipes, {id: id});
@@ -43,6 +33,32 @@ export class RecipeService {
   addRecipe(recipe: Recipe){
     recipe.id = this.getNewItemId();
     this.recipes.push(recipe);
+  }
+
+  saveRecipes(){
+    this.http.put(this.recipeBackendUrl, this.recipes).subscribe(
+      (response: any)=> {
+        console.log('Recipes are saved successfully with response: ' + JSON.stringify(response));
+        this.recipesSaved.next();
+      },
+      (error: Response) => console.log(error)
+    );
+  }
+
+  fetchRecipes(){
+    this.http.get(this.recipeBackendUrl).map(
+      (response: any) =>{
+        return response.json();
+      }
+    ).subscribe(
+      (response: any) =>{
+        this.recipes = response;
+        this.recipesFetched.next(this.recipes);
+      },
+      (error: any) =>{
+        console.log('Error occurred retrieving recipes: '+ error);
+      }
+    );
   }
 
   updateRecipe(id: number, recipe: Recipe){

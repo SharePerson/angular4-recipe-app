@@ -3,6 +3,9 @@
 		<app-recipe-list></app-recipe-list>
 	</div>
 	<div class="col-md-7">
+    <div class="alert alert-success" *ngIf="recipesSavedSuccess">
+      Recipes are saved successfully to the server!
+    </div>
     <router-outlet></router-outlet>
 	</div>
 </div>

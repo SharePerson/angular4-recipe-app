@@ -1,9 +1,11 @@
 <a [routerLink]="recipe.id" routerLinkActive="active" class="list-group-item clearfix margin-1 pointer-cursor">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-    <p class="list-group-item-text">{{recipe.description}}</p>
-  </div>
-  <span class="pull-right">
+  <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+      <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+      <p class="list-group-item-text">{{recipe.description}}</p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
       <img [src]="recipe.imagePath" [alt]="recipe.name" alt="" class="img-responsive" style="max-height: 50px"/>
-  </span>
+    </div>
+  </div>
 </a>

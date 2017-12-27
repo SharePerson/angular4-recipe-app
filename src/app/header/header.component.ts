@@ -1,4 +1,5 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component} from '@angular/core';
+import {RecipeService} from "../recipe-book/recipe.service";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,15 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class HeaderComponent  {
 
-  constructor() {
+  constructor(private recipeSerice: RecipeService) {
 
+  }
+
+  onSaveData(){
+    this.recipeSerice.saveRecipes();
+  }
+
+  onFetchData(){
+    this.recipeSerice.fetchRecipes();
   }
 }
