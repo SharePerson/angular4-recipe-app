@@ -9,11 +9,6 @@ import {RecipeEditorComponent} from "./recipe-book/recipe-editor/recipe-editor.c
 
 const appRoutes : Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full'},
-  { path: 'recipes', component: RecipeBookComponent, children: [
-    { path: 'add', component: RecipeEditorComponent },
-    { path: ':id', component: RecipeDetailComponent },
-    { path: ':id/edit', component: RecipeEditorComponent }
-  ] },
   { path: 'shopping-list', component: ShoppingListComponent, children: [
     {path: ':id', component: ShoppingListEditorComponent }
   ] }
