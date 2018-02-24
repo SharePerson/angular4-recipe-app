@@ -4,7 +4,7 @@ import {ShoppingListComponent} from "./shopping-list.component";
 import {ShoppingListEditorComponent} from "./shopping-list-editor/shopping-list-editor.component";
 
 const shoppingListRoutes: Routes = [
-  { path: 'shopping-list', component: ShoppingListComponent, children: [
+  { path: '', component: ShoppingListComponent, children: [
       {path: ':id', component: ShoppingListEditorComponent }
     ] }
 ];

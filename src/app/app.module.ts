@@ -6,7 +6,6 @@ import {ShoppingListService} from "./shopping-list/shoppinglist.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {RecipeService} from "./recipe-book/recipe.service";
 import {HttpModule} from "@angular/http";
-import {RecipesModule} from "./recipe-book/recipes.module";
 import {SharedModule} from "./shared/shared.module";
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 
@@ -19,9 +18,7 @@ import {ShoppingListModule} from "./shopping-list/shopping-list.module";
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    RecipesModule,
-    SharedModule,
-    ShoppingListModule
+    SharedModule
   ],
   providers: [
     ShoppingListService,
