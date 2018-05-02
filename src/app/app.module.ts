@@ -10,6 +10,8 @@ import {SharedModule} from "./shared/shared.module";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {ShoppingListEditorComponent} from "./shopping-list/shopping-list-editor/shopping-list-editor.component";
 import {FormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import {shoppingListReducer} from "./shopping-list/store/shopping-list.reducers";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   providers: [
     ShoppingListService,

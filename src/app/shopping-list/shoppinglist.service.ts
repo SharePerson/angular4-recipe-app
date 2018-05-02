@@ -27,8 +27,4 @@ export class ShoppingListService {
     this.ingredients.splice(index, 1);
   }
 
-  getIngredients() {
-    return this.ingredients;
-  }
-
 }
