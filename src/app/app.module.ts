@@ -7,18 +7,23 @@ import {AppRoutingModule} from "./app-routing.module";
 import {RecipeService} from "./recipe-book/recipe.service";
 import {HttpModule} from "@angular/http";
 import {SharedModule} from "./shared/shared.module";
-import {ShoppingListModule} from "./shopping-list/shopping-list.module";
+import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
+import {ShoppingListEditorComponent} from "./shopping-list/shopping-list-editor/shopping-list-editor.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ShoppingListComponent,
+    ShoppingListEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [
     ShoppingListService,
