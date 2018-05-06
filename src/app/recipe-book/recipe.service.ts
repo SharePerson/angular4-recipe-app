@@ -1,14 +1,14 @@
 import {Recipe} from "./recipe.model";
 import * as _ from 'underscore';
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
 import 'rxjs/Rx';
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class RecipeService {
 
-  constructor(private http: Http){}
+  constructor(private httpClient: HttpClient){}
 
   private recipes: Recipe[] = [];
   private recipeBackendUrl: string = 'https://ng-recipe-backend-f99d0.firebaseio.com/recipes.json';
@@ -36,29 +36,19 @@ export class RecipeService {
   }
 
   saveRecipes(){
-    this.http.put(this.recipeBackendUrl, this.recipes).subscribe(
-      (response: Response)=> {
-        console.log('Recipes are saved successfully with response: ' + JSON.stringify(response));
-        this.recipesSaved.next();
-      },
-      (error: Response) => console.log(error)
-    );
+    this.httpClient.put<Recipe[]>(this.recipeBackendUrl, this.recipes)
+      .subscribe(
+        (recipes: Recipe[]) => {
+          console.log('Recipes are saved successfully with response: ' + JSON.stringify(recipes));
+          this.recipesSaved.next();
+        }
+      );
   }
 
   fetchRecipes(){
-    this.http.get(this.recipeBackendUrl).map(
-      (response: Response) =>{
-        let recipes: Recipe[] = response.json();
-        for(let recipe of recipes){
-          if(!recipe.ingredients)
-            recipe.ingredients = [];
-        }
-
-        return recipes;
-      }
-    ).subscribe(
-      (response: Recipe[]) =>{
-        this.recipes = response;
+    this.httpClient.get<Recipe[]>(this.recipeBackendUrl).subscribe(
+      (recipes: Recipe[]) =>{
+        this.recipes = recipes;
         this.recipesFetched.next(this.recipes);
       },
       (error: Response) =>{
