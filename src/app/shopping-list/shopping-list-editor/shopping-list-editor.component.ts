@@ -43,7 +43,7 @@ export class ShoppingListEditorComponent implements OnInit, OnDestroy {
         this.store.dispatch(new ShoppingListActions.AddIngredient(newIngredient));
       }
       else{
-        this.shoppingListService.updateIngredient(this.selectedIndex, newIngredient);
+        this.store.dispatch(new ShoppingListActions.UpdateIngredient({index: this.selectedIndex, ingredient: newIngredient}));
       }
 
       this.onClear(form);
@@ -51,7 +51,7 @@ export class ShoppingListEditorComponent implements OnInit, OnDestroy {
   }
 
   onDelete(form: NgForm){
-    this.shoppingListService.deleteIngredient(this.selectedIndex);
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.selectedIndex));
     this.onClear(form);
   }
 

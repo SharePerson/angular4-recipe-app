@@ -14,12 +14,4 @@ export class ShoppingListService {
     this.ingredientSelected.next({index: index, ingredient: ingredient});
   }
 
-  updateIngredient(index: number, ingredient: Ingredient){
-    this.ingredients[index] = ingredient;
-  }
-
-  deleteIngredient(index: number) {
-    this.ingredients.splice(index, 1);
-  }
-
 }
