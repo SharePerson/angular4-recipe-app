@@ -16,7 +16,7 @@
   </button>
   <div class="clearfix"></div>
   <div formArrayName="ingredients">
-    <div *ngFor="let ingredientControl of recipeForm.get('ingredients').controls; let i = index">
+    <div *ngFor="let ingredientControl of ingredientsFormGroup['controls']; let i = index">
       <div class="form-group" [formGroupName]="i">
         <div class="pull-left margin-1 margin-2">
           <input type="text" formControlName="name" class="form-control" placeholder="Name" />
