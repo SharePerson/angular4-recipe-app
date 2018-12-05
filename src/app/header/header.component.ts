@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RecipeService} from "../recipe-book/recipe.service";
+import {RecipeService} from '../recipe-book/recipe.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +12,11 @@ export class HeaderComponent  {
 
   }
 
-  onSaveData(){
+  onSaveData() {
     this.recipeSerice.saveRecipes();
   }
 
-  onFetchData(){
+  onFetchData() {
     this.recipeSerice.fetchRecipes();
   }
 }

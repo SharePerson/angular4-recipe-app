@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RecipeService} from "./recipe.service";
+import {RecipeService} from './recipe.service';
 
 @Component({
   selector: 'app-recipe-book',
@@ -8,14 +8,14 @@ import {RecipeService} from "./recipe.service";
 })
 export class RecipeBookComponent implements OnInit {
 
-  constructor(private recipeService: RecipeService){}
-
   recipesSavedSuccess: boolean;
+
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
     this.recipeService.recipesSaved.subscribe(() => {
       this.recipesSavedSuccess = true;
-      setTimeout(()=>{
+      setTimeout(() => {
         this.recipesSavedSuccess = false;
       }, 5000);
     });

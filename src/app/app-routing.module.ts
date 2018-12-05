@@ -1,8 +1,8 @@
-import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
-import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 
-const appRoutes : Routes = [
+const appRoutes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full'},
   { path: 'recipes', loadChildren: './recipe-book/recipes.module#RecipesModule'},
   { path: 'shopping-list', loadChildren: './shopping-list/shopping-list.module#ShoppingListModule'}
@@ -13,6 +13,6 @@ const appRoutes : Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }

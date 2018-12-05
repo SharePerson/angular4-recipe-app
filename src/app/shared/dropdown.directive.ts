@@ -9,12 +9,12 @@ export class DropdownDirective {
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
-  @HostListener('click') clickEvent (eventData: Event)
-  {
-    if(this.toggle)
+  @HostListener('click') clickEvent (eventData: Event) {
+    if (this.toggle) {
       this.renderer.addClass(this.elementRef.nativeElement, 'open');
-    else
+    } else {
       this.renderer.removeClass(this.elementRef.nativeElement, 'open');
+    }
     this.toggle = !this.toggle;
   }
 
