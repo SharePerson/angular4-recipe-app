@@ -6,6 +6,8 @@ import {Store} from '@ngrx/store';
 import {Ingredient} from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../store/shopping-list.actions';
 
+import * as fromShoppingList from '../../../app/shopping-list/store/shopping-list.reducers';
+
 @Component({
   selector: 'app-shopping-list-editor',
   templateUrl: './shopping-list-editor.component.html',
@@ -18,7 +20,7 @@ export class ShoppingListEditorComponent implements OnInit, OnDestroy {
   ingredientSelectionSubscription: Subscription;
   editMode: boolean;
 
-  constructor(private shoppingListService: ShoppingListService, private store: Store<{shoppingList: {ingredients: Ingredient[]}}>) { }
+  constructor(private shoppingListService: ShoppingListService, private store: Store<fromShoppingList.AppState>) { }
 
   ngOnInit() {
     this.editMode = false;
