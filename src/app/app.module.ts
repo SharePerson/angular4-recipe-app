@@ -8,8 +8,9 @@ import {RecipeService} from './recipe-book/recipe.service';
 import {SharedModule} from './shared/shared.module';
 import {FormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
-import {shoppingListReducer} from './shopping-list/store/shopping-list.reducers';
 import {HttpClientModule} from '@angular/common/http';
+
+import {appReducer} from 'app/app.reducer';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     SharedModule,
     FormsModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot(appReducer)
   ],
   providers: [
     ShoppingListService,
