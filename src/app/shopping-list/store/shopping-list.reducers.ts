@@ -18,7 +18,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       return {
         ...state,
         ingredients: [...state.ingredients, ...action.payload]
-      }
+      };
     case ShoppingListActions.UPDATE_INGREDIENT:
       const ingredient = state.ingredients[action.payload.index];
       const updatedIngredient = {
@@ -37,7 +37,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       return{
         ...state,
         ingredients: oldIngredients
-      }
+      };
     default:
       return state;
   }
